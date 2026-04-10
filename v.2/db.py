@@ -1,14 +1,17 @@
-import psycopg2
-import os
-from dotenv import load_dotenv
+import sqlite3
 
-load_dotenv()
-
-def get_connection():
-    return psycopg2.connect(
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT")
-    )
+def crea_tabella():
+    conn = sqlite3.connect("database_spese.db")
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS spese (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            importo INT,
+            categoria TEXT
+        )
+    """)
+    
+    conn.commit()
+    conn.close()
+    print("Tabella pronta!")
