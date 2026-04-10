@@ -1,32 +1,24 @@
-from multiprocessing import Value
+from queries import add_expense, get_expenses
 
+while True:
+    print("\n=== MENU ===")
+    print("1. Add expense")
+    print("2. Show expenses")
+    print("3. Exit")
 
-def menu() -> int:
-	print('--- SPESE LOGIN ---')
-	print()
-	print('1 - INSERISCI SPESE')
-	print('2 - GUARDA SPESE')
-	print('3 - EXIT')
-	while(True):
-		try:
-			choice = int(input('>'))
-			if not (1 >= choice <= 3):
-				raise ValueError
-			return choice
-		except ValueError:
-			print('Opzione non valida')
+    choice = input("> ")
 
-def exec_opt(choice: int):
-	if choice == 1:
-		
-	elif choice == 2:
+    if choice == "1":
+        data = input("Format >50 FOOD: ")
+        amount, category = data.replace(">", "").split()
+        add_expense(int(amount), category)
 
-	elif choice == 3:
-		break
+    elif choice == "2":
+        for row in get_expenses():
+            print(row)
 
-def main():
-	
+    elif choice == "3":
+        break
 
-
-if __name__ == "__main__":
-	main()
+    else:
+        print("Invalid choice")
