@@ -1,5 +1,12 @@
+from db import create_tab, add_expense, see_expenses
+
 def main():
-	pass
+	print('DB EXPENSES RECORD')
+	create_tab()
+	add_expense(50, "prova")
+	see_expenses()
+
+
 
 
 if __name__ == "__main__":
