@@ -25,7 +25,7 @@ def add_expense(amount: int, category: str):
         "INSERT INTO spese (amount, category) VALUES (?, ?)",
         (amount, category)
     )
-
+	
     conn.commit()
     conn.close()
 
