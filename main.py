@@ -52,20 +52,24 @@ def menu_p() -> None:
 	print("2. Mostra spese")
 	print("3. Esci")
 
-def menu() -> None:
+def menu() -> int:
 	while(True):
-		menu_p()
-		choice = input('>')
-	
+		try:
+			menu_p()
+			choice = int(input('>'))
+			if not (1 <= choice <=3):
+				raise ValueError
+			return choice
+		except ValueError:
+			print("This is not an option Available")
+			os.system('clear')
 
-
-def main():
-	file_name = file_rename()
+		
+def insert_data(file_name: str) -> None:	
 	os.system('clear')
-	banner()
-	input(f'Press ENTER to continue...\n')
-	os.system('clear')
-	menu_p()
+	print('--- INSERT EXPENSES ---')
+	print()
+	instructions()
 	while (True):
 		input_expense = input('> ')
 		if input_expense.strip().lower() == 'exit':
@@ -78,5 +82,23 @@ def main():
 		except ValueError:
 			print("Error: Variables are wrong")
 
+def p_data():
+	pass
+
+def main():
+	file_name = file_rename()
+	while(True):
+		os.system('clear')
+		banner()
+		input(f'Press ENTER to continue...\n')
+		os.system('clear')
+		choice = menu()
+		if choice == 1:
+			insert_data(file_name)
+		elif choice == 2:
+			p_data(file_name)
+		elif choice == 3:
+			break
+	
 if __name__ == "__main__":
 	main()
