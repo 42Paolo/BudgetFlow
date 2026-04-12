@@ -14,7 +14,7 @@ def create_tab():
 
     conn.commit()
     conn.close()
-    print('Tabella spese Pronta!')
+    print('Tab Created')
 
 
 def add_expense(amount: int, category: str):
@@ -25,12 +25,11 @@ def add_expense(amount: int, category: str):
         "INSERT INTO spese (amount, category) VALUES (?, ?)",
         (amount, category)
     )
-	
+
     conn.commit()
     conn.close()
 
     print('Dato Inserito!')
-
 
 def see_expenses():
     conn = sqlite3.connect("database_spese.db")
